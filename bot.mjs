@@ -9,7 +9,6 @@ const bot = new TelegramBot(token, { polling: true });
 
 const channelId = process.env.CHANNEL_ID;
 
-await bot.sendMessage(channelId, "Bot is running");
 
 async function getImage() {
     try {
