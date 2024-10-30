@@ -31,28 +31,34 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine. If 
 
 ### For Arch Linux
 
+```bash
+sudo pacman -Sy
 sudo pacman -S nodejs npm git
-
+```
 ### For Ubuntu / Debian
 
+```bash
 sudo apt update
 sudo apt install nodejs npm git
-
+```
 ### For Termux
 
+```bash
 pkg update
 pkg install nodejs git
-
+```
 ### Install repository
+```bash
 git clone https://github.com/savvacorgi/Animepictg.git
 cd Animepictg
 npm install
+```
 ## Usage
 
 To run the bot, use the following command:
-
+```bash
 npm run start
-
+```
 Make sure your environment variables are correctly set in the `.env` file.
 
 ## Environment Variables
