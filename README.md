@@ -10,6 +10,7 @@ A Telegram bot that fetches and sends images from a specified API to a Telegram 
   - [For Arch Linux](#for-arch-linux)
   - [For Ubuntu / Debian](#for-ubuntu--debian)
   - [For Termux](#for-termux)
+- [Install Repositry](#Install repository)
 - [Usage](#usage)
 - [Environment Variables](#environment-variables)
 - [Contributing](#contributing)
@@ -47,7 +48,7 @@ sudo apt install nodejs npm git
 pkg update
 pkg install nodejs git
 ```
-### Install repository
+## Install repository
 ```bash
 git clone https://github.com/savvacorgi/Animepictg.git
 cd Animepictg
