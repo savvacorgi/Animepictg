@@ -10,7 +10,7 @@ A Telegram bot that fetches and sends images from a specified API to a Telegram 
   - [For Arch Linux](#for-arch-linux)
   - [For Ubuntu / Debian](#for-ubuntu--debian)
   - [For Termux](#for-termux)
-- - [Install Repository](#install-repository)
+- [Install Repository](#install-repository)
 - [Usage](#usage)
 - [Environment Variables](#environment-variables)
 - [Contributing](#contributing)
