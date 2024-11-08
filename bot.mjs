@@ -36,6 +36,8 @@ async function sendImage() {
     }
 }
 
-
+try {
 setInterval(sendImage, 30 * 1000);
-
+} catch (e) {
+console.log(e)
+}

@@ -4,7 +4,7 @@
   "description": "RandomAnimePicToTgChannel lol",
   "main": "bot.js",
   "scripts": {
-    "test": "node bot.js"
+    "run": "node bot.js"
   },
   "author": "Savvacorgi",
   "license": "ISC",
