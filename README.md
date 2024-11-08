@@ -48,7 +48,7 @@ sudo apt install nodejs npm git
 pkg update
 pkg install nodejs git
 ```
-## Istall repository
+## Install repository
 ```bash
 git clone https://github.com/savvacorgi/Animepictg.git
 cd Animepictg

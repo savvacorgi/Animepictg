@@ -9,12 +9,9 @@ const bot = new TelegramBot(token, { polling: true });
 
 const channelId = process.env.CHANNEL_ID;
 
-
 async function getImage() {
     try {
-        const response = await fetch('https://pic.re/image', {
-            method: 'POST'
-        });
+        const response = await fetch('https://pic.re/image', { method: 'POST' });
         const data = await response.json();
         return data;
     } catch (error) {
@@ -30,14 +27,15 @@ async function sendImage() {
         const sourceUrl = imageData.source || 'Source not provided';
         const messageText = `Photo: [${imageUrl}](${imageUrl})\nAuthor: ${imageData.author || 'Unknown'}\nSource: [${sourceUrl}](${sourceUrl})`;
 
-        await bot.sendPhoto(channelId, imageUrl, { caption: messageText, parse_mode: 'Markdown' });
+        try {
+            await bot.sendPhoto(channelId, imageUrl, { caption: messageText, parse_mode: 'Markdown' });
+        } catch (error) {
+            console.error('Error tg:', error);
+        }
     } else {
-        console.error('Failed to get image, please try again later.');
+        console.error('Failed to get image, uh.');
     }
 }
 
-try {
 setInterval(sendImage, 30 * 1000);
-} catch (e) {
-console.log(e)
-}
+
