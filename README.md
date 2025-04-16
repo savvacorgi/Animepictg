@@ -58,8 +58,15 @@ npm install
 
 To run the bot, use the following command:
 ```bash
-npm run start
+node src/index.js
 ```
+
+If you want auto reload
+```bash
+npm i -g pm2
+pm2 start src/index.js
+```
+
 Make sure your environment variables are correctly set in the `.env` file.
 
 ## Environment Variables

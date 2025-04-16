@@ -1,16 +1,16 @@
 {
   "name": "tgpics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "RandomAnimePicToTgChannel lol",
   "main": "bot.js",
-  "scripts": {
-    "run": "node bot.js"
-  },
   "author": "Savvacorgi",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.4.5",
+    "axios": "^1.8.4",
+    "dotenv": "^16.5.0",
+    "grammy": "^1.36.0",
     "node-fetch": "^3.3.2",
-    "node-telegram-bot-api": "^0.66.0"
+    "node-telegram-bot-api": "^0.66.0",
+    "pm2": "^6.0.5"
   }
 }
