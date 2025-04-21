@@ -3,16 +3,16 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
+//cfg
 const SEND_INTERVAL_MS = 30 * 1000;
 
 class ImageSenderBot {
     constructor(token, channelId) {
         if (!token) {
-            throw new Error('Отсутствует TELEGRAM_TOKEN в переменных окружения.');
+            throw new Error('plz add TELEGRAM_TOKEN in env');
         }
         if (!channelId) {
-            throw new Error('Отсутствует CHANNEL_ID в переменных окружения.');
+            throw new Error('plz add CHANNEL_ID in env');
         }
 
         this.token = token;
@@ -33,11 +33,11 @@ class ImageSenderBot {
             return response.data;
         } catch (error) {
             if (error.response) {
-                console.error(`Ошибка загрузки изображения: HTTP статус ${error.response.status}`, error.response.data);
+                console.error(`HTTP status ${error.response.status}`, error.response.data);
             } else if (error.request) {
-                console.error('Ошибка загрузки изображения: Ответ не получен', error.request);
+                console.error( error.request);
             } else {
-                console.error('Ошибка загрузки изображения: Ошибка настройки запроса', error.message);
+                console.error(error.message);
             }
             return null;
         }
@@ -48,7 +48,7 @@ class ImageSenderBot {
 
         const author = imageData.author ? escapeMdV2(imageData.author) : 'Unknown';
         const sourceUrl = imageData.source && String(imageData.source).trim() ? imageData.source : '#';
-        const sourceText = sourceUrl !== '#' ? 'Источник' : 'Источник не указан';
+        const sourceText = sourceUrl !== '#' ? 'Source' : 'None';
 
         let caption = `Author: ${author}\nFile: [image](${imageData.file_url})\n`;
         if (sourceUrl !== '#') {
@@ -60,7 +60,7 @@ class ImageSenderBot {
     }
 
     async sendImageToChannel() {
-        console.log('Попытка загрузить и отправить изображение...');
+        console.log('Get and send...');
         const imageData = await this.fetchImage();
 
         if (imageData && imageData.file_url) {
@@ -77,27 +77,27 @@ class ImageSenderBot {
                     caption: caption,
                     parse_mode: 'MarkdownV2',
                 });
-                console.log(`Изображение успешно отправлено в канал ${this.channelId}`);
+                console.log(`id channel ${this.channelId}`);
             } catch (error) {
                 if (error instanceof TypeError && error.code === 'ERR_INVALID_URL') {
-                     console.error(`Ошибка отправки фото: Не удалось создать валидный URL из "${imageUrl}"`, error);
+                     console.error("${imageUrl}"`, error);
                 } else if (error.response && error.response.body) {
-                     console.error('Ошибка отправки фото в Telegram (grammy):', error.description, error.parameters);
+                     console.error(error.description, error.parameters);
                 } else {
-                     console.error('Ошибка отправки фото в Telegram:', error);
+                     console.error(error);
                 }
             }
         } else {
-            console.error('Не удалось получить валидные данные изображения.');
+            console.error('dead image');
         }
     }
 
     startSending() {
         if (this.intervalId) {
-            console.warn('Процесс отправки уже запущен.');
+            console.warn('Func startSending started...');
             return;
         }
-        console.log(`Запуск сервиса отправки изображений. Интервал: ${SEND_INTERVAL_MS / 1000} секунд.`);
+        console.log(`CFG:: ${SEND_INTERVAL_MS / 1000} sec.`);
         this.sendImageToChannel();
         this.intervalId = setInterval(this.sendImageToChannel, SEND_INTERVAL_MS);
     }
@@ -106,9 +106,9 @@ class ImageSenderBot {
         if (this.intervalId) {
             clearInterval(this.intervalId);
             this.intervalId = null;
-            console.log('Сервис отправки изображений остановлен.');
+            console.log('Send func stop.');
         } else {
-            console.warn('Процесс отправки не запущен.');
+            console.warn('Send func is not started.');
         }
     }
 }
@@ -120,15 +120,15 @@ try {
     const imageBot = new ImageSenderBot(token, channelId);
     imageBot.startSending();
 
-    console.log('Бот инициализирован и процесс отправки запущен.');
+    console.log('Runing');
 
     process.once('SIGINT', () => {
-        console.log('Получен SIGINT. Остановка бота...');
+        console.log('SIGINT. Stoping...');
         imageBot.stopSending();
         process.exit(0);
     });
     process.once('SIGTERM', () => {
-        console.log('Получен SIGTERM. Остановка бота...');
+        console.log('SIGTERM. Stoping...');
         imageBot.stopSending();
         process.exit(0);
     });
