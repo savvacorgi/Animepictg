@@ -77,10 +77,10 @@ class ImageSenderBot {
                     caption: caption,
                     parse_mode: 'MarkdownV2',
                 });
-                console.log(`id channel ${this.channelId}`);
+                
             } catch (error) {
                 if (error instanceof TypeError && error.code === 'ERR_INVALID_URL') {
-                     console.error("${imageUrl}"`, error);
+                     console.error(`${imageUrl}`, error);
                 } else if (error.response && error.response.body) {
                      console.error(error.description, error.parameters);
                 } else {
